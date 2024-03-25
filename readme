@@ -1,0 +1,3 @@
+protoc   --java_out=src/main/java src/protobuf/Student.proto
+
+thrift --gen java thrift/Student.thrift

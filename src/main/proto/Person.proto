@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package com.lee9213.protobuf;
+
+option java_package = "com.lee9213.protobuf";
+option java_outer_classname = "PersonClassName";
+option java_multiple_files = true;
+
+message Person {
+
+  enum PersonEnum {
+      StudentPerson = 0;
+      TeacherPerson = 1;
+  }
+
+  optional PersonEnum personEnum = 1;
+  oneof PersonType {
+    StudentPerson stu = 2;
+    TeacherPerson te = 3;
+  }
+}
+
+message StudentPerson {
+  optional string name = 1;
+  optional int32 age = 2;
+  optional string address = 3;
+}
+
+message TeacherPerson {
+  optional string name = 1;
+  optional int32 age = 2;
+  optional string address = 3;
+}
+
+service PersonService {
+  rpc getStudent(TeacherPerson) returns (StudentPerson){}
+}
